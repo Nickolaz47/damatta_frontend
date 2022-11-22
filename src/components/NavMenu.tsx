@@ -31,7 +31,7 @@ const NavMenu = () => {
         <Nav className="me-auto mb-2 mb-lg-0">
           {navlinks.map(
             ({ name, link, side }, idx: number) =>
-              side === "left" && (
+              side === "left" && auth && (
                 <li className="nav-item" key={idx}>
                   <NavLink to={link} className="nav-link" end>
                     {name}
