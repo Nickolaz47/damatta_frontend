@@ -24,6 +24,12 @@ function App() {
           <Suspense fallback={<Spinner animation="border" variant="warning" />}>
             <Routes>
               <Route
+                path="/"
+                element={
+                  auth ? <Navigate to="/locators" /> : <Navigate to="/login" />
+                }
+              ></Route>
+              <Route
                 path="/locators"
                 element={auth ? <Locators /> : <Navigate to="/login" />}
               ></Route>
