@@ -17,18 +17,26 @@ const NavMenu = () => {
   ];
 
   return (
-    <Navbar bg="light" variant="light" collapseOnSelect as="nav">
+    <Navbar
+      bg="light"
+      variant="light"
+      sticky="top"
+      collapseOnSelect={true}
+      as="nav"
+    >
       <Container fluid>
         <Navbar.Brand>
-          <img src={logo} alt="logo" height="100px" />
+          <img src={logo} alt="logo" height="60vh" />
         </Navbar.Brand>
         <Nav className="me-auto mb-2 mb-lg-0">
           {navlinks.map(
             ({ name, link, side }, idx: number) =>
               side === "left" && (
-                <NavLink to={link} key={idx}>
-                  <Nav.Link>{name}</Nav.Link>
-                </NavLink>
+                <li className="nav-item" key={idx}>
+                  <NavLink to={link} className="nav-link" end>
+                    {name}
+                  </NavLink>
+                </li>
               )
           )}
         </Nav>
@@ -37,9 +45,11 @@ const NavMenu = () => {
             ({ name, link, side }, idx: number) =>
               side === "right" &&
               !auth && (
-                <NavLink to={link} key={idx}>
-                  <Nav.Link>{name}</Nav.Link>
-                </NavLink>
+                <li className="nav-item" key={idx}>
+                  <NavLink to={link} className="nav-link" end>
+                    {name}
+                  </NavLink>
+                </li>
               )
           )}
           {auth && (
