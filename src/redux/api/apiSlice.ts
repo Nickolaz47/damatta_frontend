@@ -1,5 +1,7 @@
 // Redux
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+// Reducers
+import { logout } from "../auth/authSlice";
 // Types
 import type {
   BaseQueryFn,
@@ -30,6 +32,7 @@ const baseQueryWithReauth: BaseQueryFn<
       return result;
     } else {
       await baseQuery("/logout", api, extraOptions);
+      api.dispatch(logout());
     }
   }
 
