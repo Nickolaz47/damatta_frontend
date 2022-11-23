@@ -16,13 +16,18 @@ const baseQuery = fetchBaseQuery({
   credentials: "include",
 });
 
+export type CustomError = {
+  status: number;
+  data: { errors: string[] };
+};
+
 const baseQueryWithReauth: BaseQueryFn<
   string | FetchArgs,
   unknown,
-  FetchBaseQueryError
+  FetchBaseQueryError | CustomError
 > = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
-
+  
   if (result.error?.status === 403) {
     // Send refresh token to get a new access token
     const refreshResult = await baseQuery("/token/refresh", api, extraOptions);

@@ -1,7 +1,10 @@
 // Components
-import { Container, Form, Button } from "react-bootstrap";
+import { Container, Form, Button, Spinner } from "react-bootstrap";
 // Hooks
 import { useState, FormEvent } from "react";
+import { useTreatError } from "../../hooks/useTreatError";
+// Redux
+import { useLoginMutation } from "../../redux/services/authService";
 // Img
 import logo from "../../img/logo_damatta_cortado.png";
 
@@ -9,8 +12,13 @@ const Login = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
+  const { treatError } = useTreatError();
+  const [login, { isLoading, error }] = useLoginMutation();
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    const credentials = { name, password };
+    await login(credentials);
   };
 
   return (
@@ -49,10 +57,19 @@ const Login = () => {
               />
             </Form.Label>
           </Form.Group>
-          <Button className="mt-2 px-4" variant="warning" size="lg" type="submit">
-            Login
-          </Button>
+          {!isLoading && (
+            <Button
+              className="mt-2 px-4"
+              variant="warning"
+              size="lg"
+              type="submit"
+            >
+              Login
+            </Button>
+          )}
+          {isLoading && <Spinner animation="border" variant="warning" />}
         </Form>
+        {error && <p>{treatError(error)}</p>}
       </div>
     </Container>
   );
