@@ -1,6 +1,6 @@
 // Components
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import NavMenu from "./components/NavMenu";
+import NavMenu from "./components/General/NavMenu";
 import { Spinner } from "react-bootstrap";
 // Hooks
 import { lazy, Suspense } from "react";

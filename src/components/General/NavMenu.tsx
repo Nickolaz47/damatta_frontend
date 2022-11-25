@@ -2,10 +2,10 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 // Hooks
-import { useAuth } from "../hooks/useAuth";
-import { useLogout } from "../hooks/useLogout";
+import { useAuth } from "../../hooks/useAuth";
+import { useLogout } from "../../hooks/useLogout";
 // Img
-import logo from "../img/logo_damatta_cortado.png";
+import logo from "../../img/logo_damatta_cortado.png";
 import { IoIosLogOut } from "react-icons/io";
 
 const NavMenu = () => {

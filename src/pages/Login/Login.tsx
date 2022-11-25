@@ -1,6 +1,6 @@
 // Components
 import { Container, Form, Button, Spinner } from "react-bootstrap";
-import Message from "../../components/Message";
+import Message from "../../components/General/Message";
 // Hooks
 import { useState, FormEvent } from "react";
 import { useTreatError } from "../../hooks/useTreatError";
