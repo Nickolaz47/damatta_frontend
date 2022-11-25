@@ -1,5 +1,4 @@
 // Components
-import { Navbar, Container, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 // Hooks
 import { useAuth } from "../../hooks/useAuth";
@@ -33,31 +32,38 @@ const NavMenu = () => {
   };
 
   return (
-    <Navbar
-      bg="light"
-      variant="light"
-      sticky="top"
-      collapseOnSelect={true}
-      as="nav"
-    >
-      <Container fluid>
-        <Navbar.Brand>
-          <img src={logo} alt="logo" height="60vh" />
-        </Navbar.Brand>
-        <Nav className="me-auto mb-2 mb-lg-0">
-          {navlinks.map(
-            ({ name, link, side }, idx: number) =>
-              side === "left" &&
-              auth && (
-                <li className="nav-item" key={idx}>
-                  <NavLink to={link} className="nav-link" end>
-                    {name}
-                  </NavLink>
-                </li>
-              )
-          )}
-        </Nav>
-        <Nav className="d-flex align-items-center">
+    <nav className="navbar navbar-expand-lg navbar-light bg-warning sticky-top">
+      <div className="container-fluid">
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <div className="navbar-brand">
+            <img src={logo} alt="logo" height="60vh" />
+          </div>
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            {navlinks.map(
+              ({ name, link, side }, idx: number) =>
+                side === "left" &&
+                auth && (
+                  <li className="nav-item" key={idx}>
+                    <NavLink to={link} className="nav-link" end>
+                      {name}
+                    </NavLink>
+                  </li>
+                )
+            )}
+          </ul>
+        </div>
+        <div className="d-flex align-items-center">
           {navlinks.map(
             ({ name, link, side }, idx: number) =>
               side === "right" &&
@@ -80,9 +86,9 @@ const NavMenu = () => {
               </span>
             </button>
           )}
-        </Nav>
-      </Container>
-    </Navbar>
+        </div>
+      </div>
+    </nav>
   );
 };
 
