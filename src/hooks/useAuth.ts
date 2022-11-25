@@ -8,7 +8,7 @@ export const useAuth = () => {
   const [auth, setAuth] = useState(false);
 
   const user = useSelector(selectCurrentUser);
-  console.log(Object.keys(user).length);
+  
   useEffect(() => {
     if (Object.keys(user).length > 0) {
       setAuth(true);

@@ -14,7 +14,7 @@ const NavMenu = () => {
   const auth = useAuth();
 
   const dispatch = useDispatch();
-  const [logout, { isSuccess }] = useLogoutMutation();
+  const [logout] = useLogoutMutation();
 
   const navlinks = [
     { name: "Locadores", link: "/locators", side: "left" },
@@ -26,9 +26,7 @@ const NavMenu = () => {
 
   const handleLogout = async () => {
     await logout("");
-    if (isSuccess) {
-      dispatch(logoutFront());
-    }
+    dispatch(logoutFront());
   };
 
   return (
