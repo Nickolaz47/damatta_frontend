@@ -3,14 +3,19 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 // Hooks
 import { useAuth } from "../../hooks/useAuth";
-import { useLogout } from "../../hooks/useLogout";
+import { useDispatch } from "react-redux";
+// Redux
+import { useLogoutMutation } from "../../redux/services/authService";
+import { logout as logoutFront } from "../../redux/auth/authSlice";
 // Img
 import logo from "../../img/logo_damatta_cortado.png";
 import { IoIosLogOut } from "react-icons/io";
 
 const NavMenu = () => {
   const auth = useAuth();
-  const handleLogout = useLogout();
+
+  const dispatch = useDispatch();
+  const [logout, { isSuccess }] = useLogoutMutation();
 
   const navlinks = [
     { name: "Locadores", link: "/locators", side: "left" },
@@ -19,6 +24,13 @@ const NavMenu = () => {
     { name: "Vendas", link: "/sales", side: "left" },
     { name: "Login", link: "/login", side: "right" },
   ];
+
+  const handleLogout = async () => {
+    await logout("");
+    if (isSuccess) {
+      dispatch(logoutFront());
+    }
+  };
 
   return (
     <Navbar
@@ -60,7 +72,7 @@ const NavMenu = () => {
           {auth && (
             <button
               className="btn btn-outline-danger btn-sm mx-1"
-              onClick={() => handleLogout()}
+              onClick={handleLogout}
             >
               <span className="d-flex justify-content-center align-items-center">
                 <IoIosLogOut />

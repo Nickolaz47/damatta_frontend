@@ -1,17 +1,21 @@
 // Hooks
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 // Redux
 import { selectCurrentUser } from "../redux/auth/authSlice";
 
 export const useAuth = () => {
-  const user = useSelector(selectCurrentUser);
-  let auth;
+  const [auth, setAuth] = useState(false);
 
-  if (Object.keys(user).length > 0) {
-    auth = true;
-  } else {
-    auth = false;
-  }
+  const user = useSelector(selectCurrentUser);
+  console.log(Object.keys(user).length);
+  useEffect(() => {
+    if (Object.keys(user).length > 0) {
+      setAuth(true);
+    } else {
+      setAuth(false);
+    }
+  }, [user]);
 
   return auth;
 };

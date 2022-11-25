@@ -14,7 +14,7 @@ function App() {
   const Login = lazy(() => import("./pages/Login/Login"));
   const Locators = lazy(() => import("./pages/Locators/Locators"));
   const Renters = lazy(() => import("./pages/Renters/Renters"));
-  const Rents = lazy(() => import("./pages/Renters/Renters"));
+  const Rents = lazy(() => import("./pages/Rents/Rents"));
   const Sales = lazy(() => import("./pages/Sales/Sales"));
 
   return (

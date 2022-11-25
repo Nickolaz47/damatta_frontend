@@ -1,5 +1,5 @@
 // Components
-import { Container, Form, Button, Spinner } from "react-bootstrap";
+import { Container, Button, Spinner } from "react-bootstrap";
 import Message from "../../components/General/Message";
 // Hooks
 import { useState, FormEvent } from "react";
@@ -23,7 +23,7 @@ const Login = () => {
     e.preventDefault();
     const credentials = { name, password };
     const user = await login(credentials);
-    if ("data" in user && !error) {
+    if ("data" in user) {
       dispatch(setCredentials(user.data));
     }
   };
@@ -32,40 +32,35 @@ const Login = () => {
     <Container className="login_container" as="section">
       <div className="login">
         <img src={logo} alt="logo" height="110vh" />
-        <Form onSubmit={(e) => handleSubmit(e)} className="mt-4 text-center">
-          <Form.Group className="mb-2">
-            <Form.Label className="text-start">
+        <form onSubmit={handleSubmit} className="my-3">
+          <div className="form-floating mb-3 text-start">
+            <input
+              className="form-control"
+              type="text"
+              placeholder="Usuário"
+              value={name || ""}
+              onChange={(e) => setName(e.target.value)}
+              id="floatingName"
+              required
+            />
+            <label className="form-label" htmlFor="floatingName">
               Usuário
-              <Form.Control
-                type="text"
-                size="sm"
-                style={{ width: "17.5em" }}
-                name="usuario"
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-                value={name}
-                autoFocus
-                required
-              />
-            </Form.Label>
-          </Form.Group>
-          <Form.Group className="mb-2">
-            <Form.Label className="text-start">
+            </label>
+          </div>
+          <div className="form-floating mb-3 text-start">
+            <input
+              className="form-control"
+              type="password"
+              placeholder="Senha"
+              value={password || ""}
+              onChange={(e) => setPassword(e.target.value)}
+              id="floatingPsetPassword"
+              required
+            />
+            <label className="form-label" htmlFor="floatingPsetPassword">
               Senha
-              <Form.Control
-                type="password"
-                size="sm"
-                style={{ width: "17.5em" }}
-                name="senha"
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-                value={password}
-                required
-              />
-            </Form.Label>
-          </Form.Group>
+            </label>
+          </div>
           {!isLoading && (
             <Button
               className="my-2 px-4"
@@ -77,7 +72,7 @@ const Login = () => {
             </Button>
           )}
           {isLoading && <Spinner animation="border" variant="warning" />}
-        </Form>
+        </form>
         {error && <Message msg={treatError(error)} type="error" />}
       </div>
     </Container>
