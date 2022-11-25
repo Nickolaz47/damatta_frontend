@@ -9,11 +9,11 @@ const authService = apiSlice.injectEndpoints({
       query: (credentials) => requestConfig(`/login`, "POST", credentials),
       transformErrorResponse: (response) => handleError(response),
     }),
-    logout: builder.query({
+    logout: builder.mutation({
       query: () => requestConfig(`/logout`, "GET", {}),
       transformErrorResponse: (response) => handleError(response),
     }),
   }),
 });
 
-export const { useLoginMutation, useLogoutQuery } = authService;
+export const { useLoginMutation, useLogoutMutation } = authService;

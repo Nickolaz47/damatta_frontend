@@ -1,12 +1,16 @@
 // Components
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+// Hooks
+import { useAuth } from "../hooks/useAuth";
+import { useLogout } from "../hooks/useLogout";
 // Img
 import logo from "../img/logo_damatta_cortado.png";
 import { IoIosLogOut } from "react-icons/io";
 
 const NavMenu = () => {
-  const auth = false;
+  const auth = useAuth();
+  const handleLogout = useLogout();
 
   const navlinks = [
     { name: "Locadores", link: "/locators", side: "left" },
@@ -31,7 +35,8 @@ const NavMenu = () => {
         <Nav className="me-auto mb-2 mb-lg-0">
           {navlinks.map(
             ({ name, link, side }, idx: number) =>
-              side === "left" && auth && (
+              side === "left" &&
+              auth && (
                 <li className="nav-item" key={idx}>
                   <NavLink to={link} className="nav-link" end>
                     {name}
@@ -53,7 +58,10 @@ const NavMenu = () => {
               )
           )}
           {auth && (
-            <button className="btn btn-outline-danger btn-sm mx-1">
+            <button
+              className="btn btn-outline-danger btn-sm mx-1"
+              onClick={() => handleLogout()}
+            >
               <span className="d-flex justify-content-center align-items-center">
                 <IoIosLogOut />
                 &nbsp;Logout

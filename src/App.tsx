@@ -4,11 +4,12 @@ import NavMenu from "./components/NavMenu";
 import { Spinner } from "react-bootstrap";
 // Hooks
 import { lazy, Suspense } from "react";
+import { useAuth } from "./hooks/useAuth";
 // CSS
 import "./App.css";
 
 function App() {
-  const auth = false;
+  const auth = useAuth();
 
   const Login = lazy(() => import("./pages/Login/Login"));
   const Locators = lazy(() => import("./pages/Locators/Locators"));
@@ -31,19 +32,19 @@ function App() {
               ></Route>
               <Route
                 path="/locators"
-                element={auth ? <Locators /> : <Navigate to="/login" />}
+                element={auth ? <Locators /> : <Login />}
               ></Route>
               <Route
                 path="/renters"
-                element={auth ? <Renters /> : <Navigate to="/login" />}
+                element={auth ? <Renters /> : <Login />}
               ></Route>
               <Route
                 path="/rents"
-                element={auth ? <Rents /> : <Navigate to="/login" />}
+                element={auth ? <Rents /> : <Login />}
               ></Route>
               <Route
                 path="/sales"
-                element={auth ? <Sales /> : <Navigate to="/login" />}
+                element={auth ? <Sales /> : <Login />}
               ></Route>
               <Route
                 path="/login"
