@@ -68,11 +68,9 @@ const NavMenu = () => {
             ({ name, link, side }, idx: number) =>
               side === "right" &&
               !auth && (
-                <li className="nav-item" key={idx}>
-                  <NavLink to={link} className="nav-link" end>
-                    {name}
-                  </NavLink>
-                </li>
+                <NavLink to={link} key={idx} className="nav-link" end>
+                  {name}
+                </NavLink>
               )
           )}
           {auth && (
