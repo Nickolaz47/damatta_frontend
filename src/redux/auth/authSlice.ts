@@ -7,7 +7,7 @@ const authSlice = createSlice({
   reducers: {
     setCredentials: (state, action) => {
       const user = action.payload;
-      Cookies.set("damattaAuthCookie", user);
+      Cookies.set("damattaAuthCookie", user.id, { expires: 7 });
       state.user = user;
     },
     logout: (state) => {
