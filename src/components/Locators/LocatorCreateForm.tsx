@@ -2,21 +2,29 @@
 import { Button, Spinner } from "react-bootstrap";
 import Message from "../General/Message";
 // Hooks
-import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useState, useEffect, FormEvent } from "react";
 import { useTreatError } from "../../hooks/useTreatError";
 // Redux
-import { selectCurrentUser } from "../../redux/auth/authSlice";
+import { useCreateLocatorMutation } from "../../redux/services/locatorService";
 
 const LocatorCreateForm = () => {
   const [name, setName] = useState("");
 
-  const isLoading = false;
-  const error = false;
   const { treatError } = useTreatError();
-  const currentUser = useSelector(selectCurrentUser);
+  const [createLocator, { isLoading, isSuccess, error }] =
+    useCreateLocatorMutation();
 
-  const handleSubmit = () => {};
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    await createLocator({ name });
+  };
+
+  useEffect(() => {
+    if (isSuccess && !error) {
+      setName("");
+    }
+  }, [isSuccess, error]);
+
   return (
     <div className="col border p-4">
       <h3 className="text-center my-4">Cadastro de Locator</h3>
