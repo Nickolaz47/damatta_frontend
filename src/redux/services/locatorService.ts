@@ -7,6 +7,7 @@ const locatorService = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getLocators: builder.query({
       query: () => requestConfig(`/locators/get`, "GET", null),
+      transformResponse: (response:any) => response.locators,
       transformErrorResponse: (response) => handleError(response),
       providesTags: ["Locator"],
     }),
@@ -22,8 +23,8 @@ const locatorService = apiSlice.injectEndpoints({
       invalidatesTags: ["Locator"],
     }),
     deleteLocator: builder.mutation({
-      query: ({ locatorId, locator }) =>
-        requestConfig(`/locators/${locatorId}`, "DELETE", locator),
+      query: (locatorId) =>
+        requestConfig(`/locators/${locatorId}`, "DELETE", null),
       transformErrorResponse: (response) => handleError(response),
       invalidatesTags: ["Locator"],
     }),

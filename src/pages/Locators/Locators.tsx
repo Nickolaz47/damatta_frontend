@@ -1,11 +1,13 @@
 // Components
 import LocatorCreateForm from "../../components/Locators/LocatorCreateForm";
+import LocatorTable from "../../components/Locators/LocatorTable";
 
 const Locators = () => {
   return (
     <div className="container">
-      <div className="row m-4">
+      <div className="row m-3">
         <LocatorCreateForm />
+        <LocatorTable />
       </div>
     </div>
   );

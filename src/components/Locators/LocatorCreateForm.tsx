@@ -27,7 +27,7 @@ const LocatorCreateForm = () => {
 
   return (
     <div className="col border p-4">
-      <h3 className="text-center my-4">Cadastro de Locator</h3>
+      <h3 className="text-center my-4">Cadastro</h3>
       <form onSubmit={handleSubmit} className="my-3 text-center">
         <div className="form-floating mb-3 text-start">
           <input
