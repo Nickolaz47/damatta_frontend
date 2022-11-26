@@ -27,7 +27,7 @@ const baseQueryWithReauth: BaseQueryFn<
   FetchBaseQueryError | CustomError
 > = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
-  
+
   if (result.error?.status === 403) {
     // Send refresh token to get a new access token
     const refreshResult = await baseQuery("/token/refresh", api, extraOptions);
@@ -47,4 +47,5 @@ const baseQueryWithReauth: BaseQueryFn<
 export const apiSlice = createApi({
   baseQuery: baseQueryWithReauth,
   endpoints: (builder) => ({}),
+  tagTypes: ["Locator", "Renter", "Rent", "Sale"],
 });

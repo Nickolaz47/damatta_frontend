@@ -10,7 +10,7 @@ const authService = apiSlice.injectEndpoints({
       transformErrorResponse: (response) => handleError(response),
     }),
     logout: builder.mutation({
-      query: () => requestConfig(`/logout`, "GET", {}),
+      query: () => requestConfig(`/logout`, "GET", null),
       transformErrorResponse: (response) => handleError(response),
     }),
   }),
