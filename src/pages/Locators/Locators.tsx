@@ -4,7 +4,7 @@ import LocatorTable from "../../components/Locators/LocatorTable";
 
 const Locators = () => {
   return (
-    <div className="container">
+    <div className="container-fluid">
       <div className="row m-3">
         <LocatorCreateForm />
         <LocatorTable />
