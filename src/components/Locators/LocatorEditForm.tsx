@@ -23,7 +23,9 @@ const LocatorEditForm = ({
 
   const { treatError } = useTreatError();
 
-  const { data: locator = {} } = useGetLocatorByIdQuery(locatorId);
+  const { data: locator = {} } = useGetLocatorByIdQuery(locatorId, {
+    skip: !show,
+  });
 
   useEffect(() => {
     if (Object.keys(locator).length > 0) {
@@ -37,10 +39,13 @@ const LocatorEditForm = ({
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     await updateLocator({ locatorId, locator: { name } });
-    if (isSuccess) {
+  };
+
+  useEffect(() => {
+    if (isSuccess && !error) {
       setShow(false);
     }
-  };
+  }, [isSuccess, error, setShow]);
 
   return (
     <Modal

@@ -8,13 +8,11 @@ const rentService = apiSlice.injectEndpoints({
     getRents: builder.query({
       query: () => requestConfig(`/rents/get`, "GET", null),
       transformErrorResponse: (response) => handleError(response),
-      transformResponse: (response: any) => response.rents,
       providesTags: ["Rent"],
     }),
     getRentById: builder.query({
       query: (rentId) => requestConfig(`/rents/${rentId}`, "GET", null),
       transformErrorResponse: (response) => handleError(response),
-      transformResponse: (response: any) => response.rent,
       providesTags: ["Rent"],
     }),
     createRent: builder.mutation({

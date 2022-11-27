@@ -7,13 +7,11 @@ const renterService = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getRenters: builder.query({
       query: () => requestConfig(`/renters/get`, "GET", null),
-      transformResponse: (response: any) => response.renters,
       transformErrorResponse: (response) => handleError(response),
       providesTags: ["Renter"],
     }),
     getRenterById: builder.query({
       query: (renterId) => requestConfig(`/renters/${renterId}`, "GET", null),
-      transformResponse: (response: any) => response.renter,
       transformErrorResponse: (response) => handleError(response),
       providesTags: ["Renter"],
     }),
