@@ -5,6 +5,7 @@ import SaleEditForm from "./SaleEditForm";
 // Hooks
 import { useState } from "react";
 import { useTreatError } from "../../hooks/useTreatError";
+import { useFormatDate } from "../../hooks/useFormatDate";
 // Redux
 import { useGetSalesQuery } from "../../redux/services/saleService";
 import { useDeleteSaleMutation } from "../../redux/services/saleService";
@@ -15,6 +16,8 @@ const SaleTable = () => {
   const [show, setShow] = useState(false);
 
   const { treatError } = useTreatError();
+  const { formatDateToUser } = useFormatDate();
+
   const { data: sales = [], error, isLoading } = useGetSalesQuery("");
   const [deleteSale] = useDeleteSaleMutation();
 
@@ -58,10 +61,20 @@ const SaleTable = () => {
                 <tr key={id}>
                   <td>{seller}</td>
                   <td>{buyer}</td>
-                  <td>{value}</td>
-                  <td>{commission}</td>
+                  <td>
+                    {value.toLocaleString("pt-BR", {
+                      style: "currency",
+                      currency: "BRL",
+                    })}
+                  </td>
+                  <td>
+                    {commission.toLocaleString("pt-BR", {
+                      style: "currency",
+                      currency: "BRL",
+                    })}
+                  </td>
                   <td>{agent}</td>
-                  <td>{date}</td>
+                  <td>{formatDateToUser(date)}</td>
                   <td>
                     <button
                       className="btn btn-secondary mx-1"
@@ -76,7 +89,7 @@ const SaleTable = () => {
                       <BsTrash />
                     </button>
                   </td>
-                  <SaleEditForm show={show} setShow={setShow} saleId={id}/>
+                  <SaleEditForm show={show} setShow={setShow} saleId={id} />
                 </tr>
               )
             )}

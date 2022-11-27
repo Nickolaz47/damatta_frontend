@@ -9,6 +9,7 @@ import {
   useGetSaleByIdQuery,
   useUpdateSaleMutation,
 } from "../../redux/services/saleService";
+import { useFormatDate } from "../../hooks/useFormatDate";
 
 const SaleEditForm = ({
   show,
@@ -27,6 +28,7 @@ const SaleEditForm = ({
   const [date, setDate] = useState("");
 
   const { treatError } = useTreatError();
+  const { formatDateToFront } = useFormatDate();
 
   const { data: sale = {} } = useGetSaleByIdQuery(saleId, {
     skip: !show,
@@ -147,7 +149,7 @@ const SaleEditForm = ({
               className="form-control"
               type="date"
               placeholder="Data"
-              value={date || ""}
+              value={formatDateToFront(date) || ""}
               onChange={(e) => setDate(e.target.value)}
               id="floatingDate"
               required
@@ -163,10 +165,8 @@ const SaleEditForm = ({
           )}
           {isLoading && <Spinner animation="border" variant="warning" />}
         </form>
-      </Modal.Body>
-      <Modal.Footer>
         {error && <Message msg={treatError(error)} type="error" />}
-      </Modal.Footer>
+      </Modal.Body>
     </Modal>
   );
 };
