@@ -15,7 +15,7 @@ const LocatorTable = () => {
   const [deleteLocator] = useDeleteLocatorMutation();
 
   return (
-    <div className="col-8 p-2">
+    <div className="col-sm-8 my-2">
       {error && <Message msg={treatError(error)} type="error" />}
       {isLoading && <Spinner animation="border" variant="warning" />}
       <table className="table table-light table-striped table-hover">
