@@ -5,26 +5,26 @@ import Message from "../General/Message";
 import { useState, useEffect, useRef, FormEvent } from "react";
 import { useTreatError } from "../../hooks/useTreatError";
 // Redux
-import { useCreateLocatorMutation } from "../../redux/services/locatorService";
+import { useCreateRenterMutation } from "../../redux/services/renterService";
 
-const LocatorCreateForm = () => {
+const RenterCreateForm = () => {
   const [name, setName] = useState("");
 
   const inputRef = useRef<HTMLInputElement>(null);
 
   const { treatError } = useTreatError();
-  const [createLocator, { isLoading, isSuccess, error }] =
-    useCreateLocatorMutation();
+  const [createRenter, { isLoading, isSuccess, error }] =
+    useCreateRenterMutation();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    await createLocator({ name });
+    await createRenter({ name });
   };
-
+  
   useEffect(() => {
     if (isSuccess && !error) {
       setName("");
-      inputRef.current?.focus();
+      inputRef.current?.focus()
     }
   }, [isSuccess, error]);
 
@@ -73,4 +73,4 @@ const LocatorCreateForm = () => {
   );
 };
 
-export default LocatorCreateForm;
+export default RenterCreateForm;
