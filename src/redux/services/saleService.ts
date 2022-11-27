@@ -6,28 +6,28 @@ import handleError from "../helpers/handleError";
 const saleService = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getSales: builder.query({
-      query: () => requestConfig(`/rents/get`, "GET", null),
+      query: () => requestConfig(`/sales/get`, "GET", null),
       transformErrorResponse: (response) => handleError(response),
       providesTags: ["Rent"],
     }),
     getSaleById: builder.query({
-      query: (rentId) => requestConfig(`/rents/${rentId}`, "GET", null),
+      query: (rentId) => requestConfig(`/sales/${rentId}`, "GET", null),
       transformErrorResponse: (response) => handleError(response),
       providesTags: ["Rent"],
     }),
     createSale: builder.mutation({
-      query: (rent) => requestConfig(`/rents/create`, "POST", rent),
+      query: (rent) => requestConfig(`/sales/create`, "POST", rent),
       transformErrorResponse: (response) => handleError(response),
       invalidatesTags: ["Rent"],
     }),
     updateSale: builder.mutation({
       query: ({ rentId, rent }) =>
-        requestConfig(`/rents/${rentId}`, "UPDATE", rent),
+        requestConfig(`/sales/${rentId}`, "UPDATE", rent),
       transformErrorResponse: (response) => handleError(response),
       invalidatesTags: ["Rent"],
     }),
     deleteSale: builder.mutation({
-      query: (rentId) => requestConfig(`/rents/${rentId}`, "DELETE", null),
+      query: (rentId) => requestConfig(`/sales/${rentId}`, "DELETE", null),
       transformErrorResponse: (response) => handleError(response),
       invalidatesTags: ["Rent"],
     }),

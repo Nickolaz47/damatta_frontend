@@ -22,7 +22,7 @@ const SaleCreateForm = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const sale = {};
+    const sale = { seller, buyer, value, commission, agent, date };
     await createSale(sale);
   };
 
