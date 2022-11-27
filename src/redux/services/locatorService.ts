@@ -14,7 +14,6 @@ const locatorService = apiSlice.injectEndpoints({
     getLocatorById: builder.query({
       query: (locatorId) =>
         requestConfig(`/locators/${locatorId}`, "GET", null),
-      transformResponse: (response: any) => response.locators,
       transformErrorResponse: (response) => handleError(response),
       providesTags: ["Locator"],
     }),

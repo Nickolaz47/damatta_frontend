@@ -1,7 +1,9 @@
 // Components
 import { Spinner } from "react-bootstrap";
 import Message from "../General/Message";
+import LocatorEditForm from "./LocatorEditForm";
 // Hooks
+import { useState } from "react";
 import { useTreatError } from "../../hooks/useTreatError";
 // Redux
 import { useGetLocatorsQuery } from "../../redux/services/locatorService";
@@ -10,6 +12,8 @@ import { useDeleteLocatorMutation } from "../../redux/services/locatorService";
 import { BsTrash, BsPencil } from "react-icons/bs";
 
 const LocatorTable = () => {
+  const [show, setShow] = useState(false);
+
   const { treatError } = useTreatError();
   const { data: locators = [], error, isLoading } = useGetLocatorsQuery("");
   const [deleteLocator] = useDeleteLocatorMutation();
@@ -43,7 +47,10 @@ const LocatorTable = () => {
                   <td>{name}</td>
                   <td>{rentNumbers}</td>
                   <td>
-                    <button className="btn btn-secondary mx-1">
+                    <button
+                      className="btn btn-secondary mx-1"
+                      onClick={() => setShow(true)}
+                    >
                       <BsPencil />
                     </button>
                     <button
@@ -53,6 +60,11 @@ const LocatorTable = () => {
                       <BsTrash />
                     </button>
                   </td>
+                  <LocatorEditForm
+                    show={show}
+                    setShow={setShow}
+                    locatorId={id}
+                  />
                 </tr>
               )
             )}
