@@ -14,12 +14,18 @@ import { BsTrash, BsPencil } from "react-icons/bs";
 
 const SaleTable = () => {
   const [show, setShow] = useState(false);
+  const [editId, setEditId] = useState("");
 
   const { treatError } = useTreatError();
   const { formatDateToUser } = useFormatDate();
 
   const { data: sales = [], error, isLoading } = useGetSalesQuery("");
   const [deleteSale] = useDeleteSaleMutation();
+
+  const handleEdit = (id: string) => {
+    setShow(true);
+    setEditId(id);
+  };
 
   return (
     <div className="col-sm-8 my-2">
@@ -78,7 +84,7 @@ const SaleTable = () => {
                   <td>
                     <button
                       className="btn btn-secondary mx-1"
-                      onClick={() => setShow(true)}
+                      onClick={() => handleEdit(id)}
                     >
                       <BsPencil />
                     </button>
@@ -88,8 +94,12 @@ const SaleTable = () => {
                     >
                       <BsTrash />
                     </button>
+                    <SaleEditForm
+                      show={show}
+                      setShow={setShow}
+                      saleId={editId}
+                    />
                   </td>
-                  <SaleEditForm show={show} setShow={setShow} saleId={id} />
                 </tr>
               )
             )}

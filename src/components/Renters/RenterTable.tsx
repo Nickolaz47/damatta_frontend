@@ -13,10 +13,16 @@ import { BsTrash, BsPencil } from "react-icons/bs";
 
 const RenterTable = () => {
   const [show, setShow] = useState(false);
+  const [editId, setEditId] = useState("");
 
   const { treatError } = useTreatError();
   const { data: renters = [], error, isLoading } = useGetRentersQuery("");
   const [deleteRenter] = useDeleteRenterMutation();
+
+  const handleEdit = (id: string) => {
+    setShow(true);
+    setEditId(id);
+  };
 
   return (
     <div className="col-sm-8 my-2">
@@ -32,38 +38,30 @@ const RenterTable = () => {
         <tbody>
           {renters &&
             renters.length > 0 &&
-            renters.map(
-              ({
-                id,
-                name,
-              }: {
-                id: string;
-                name: string;
-              }) => (
-                <tr key={id}>
-                  <td>{name}</td>
-                  <td>
-                    <button
-                      className="btn btn-secondary mx-1"
-                      onClick={() => setShow(true)}
-                    >
-                      <BsPencil />
-                    </button>
-                    <button
-                      className="btn btn-danger mx-1"
-                      onClick={async () => await deleteRenter(id)}
-                    >
-                      <BsTrash />
-                    </button>
-                  </td>
+            renters.map(({ id, name }: { id: string; name: string }) => (
+              <tr key={id}>
+                <td>{name}</td>
+                <td>
+                  <button
+                    className="btn btn-secondary mx-1"
+                    onClick={() => handleEdit(id)}
+                  >
+                    <BsPencil />
+                  </button>
+                  <button
+                    className="btn btn-danger mx-1"
+                    onClick={async () => await deleteRenter(id)}
+                  >
+                    <BsTrash />
+                  </button>
                   <RenterEditForm
                     show={show}
                     setShow={setShow}
-                    renterId={id}
+                    renterId={editId}
                   />
-                </tr>
-              )
-            )}
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
