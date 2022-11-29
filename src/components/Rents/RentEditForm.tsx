@@ -54,8 +54,8 @@ const RentEditForm = ({
         LocatorId,
         RenterId,
         value,
-        dueDate,
-        payday,
+        dueDate: formatDateToFront(dueDate),
+        payday: formatDateToFront(payday),
       };
       await updateRent({ rentId, rent });
     } else {
@@ -63,7 +63,7 @@ const RentEditForm = ({
         LocatorId,
         RenterId,
         value,
-        dueDate,
+        dueDate: formatDateToFront(dueDate),
       };
       await updateRent({ rentId, rent });
     }

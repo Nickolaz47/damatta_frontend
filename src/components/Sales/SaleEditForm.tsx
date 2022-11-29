@@ -49,7 +49,14 @@ const SaleEditForm = ({
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const sale = { seller, buyer, value, commission, agent, date };
+    const sale = {
+      seller,
+      buyer,
+      value,
+      commission,
+      agent,
+      date: formatDateToFront(date),
+    };
     await updateSale({ saleId, sale });
   };
 
