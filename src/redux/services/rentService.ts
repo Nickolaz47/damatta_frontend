@@ -18,18 +18,18 @@ const rentService = apiSlice.injectEndpoints({
     createRent: builder.mutation({
       query: (rent) => requestConfig(`/rents/create`, "POST", rent),
       transformErrorResponse: (response) => handleError(response),
-      invalidatesTags: ["Rent"],
+      invalidatesTags: ["Rent", "Locator"],
     }),
     updateRent: builder.mutation({
       query: ({ rentId, rent }) =>
         requestConfig(`/rents/${rentId}`, "PUT", rent),
       transformErrorResponse: (response) => handleError(response),
-      invalidatesTags: ["Rent"],
+      invalidatesTags: ["Rent", "Locator"],
     }),
     deleteRent: builder.mutation({
       query: (rentId) => requestConfig(`/rents/${rentId}`, "DELETE", null),
       transformErrorResponse: (response) => handleError(response),
-      invalidatesTags: ["Rent"],
+      invalidatesTags: ["Rent", "Locator"],
     }),
   }),
 });

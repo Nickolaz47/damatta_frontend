@@ -36,7 +36,7 @@ const LocatorCreateForm = () => {
       >
         <div className="card-body p-5 text-center">
           <div className="mb-md-1 mt-md-2 pb-2">
-            <h3 className="text-center my-4">Cadastro</h3>
+            <h3 className="text-center my-4">Locador</h3>
             <form onSubmit={handleSubmit} className="my-3 text-center">
               <div className="form-floating mb-3 text-start">
                 <input
