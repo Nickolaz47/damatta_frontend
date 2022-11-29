@@ -27,11 +27,9 @@ const RentCreateForm = () => {
 
     if (payday) {
       const rent = { LocatorId, RenterId, value, dueDate, payday };
-      console.log(rent, 1);
       await createRent(rent);
     } else {
       const rent = { LocatorId, RenterId, value, dueDate };
-      console.log(rent, 2);
       await createRent(rent);
     }
   };

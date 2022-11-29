@@ -1,6 +1,7 @@
 // Components
 import { Spinner } from "react-bootstrap";
 import Message from "../General/Message";
+import RentEditForm from "./RentEditForm";
 // Hooks
 import { useState } from "react";
 import { useTreatError } from "../../hooks/useTreatError";
@@ -79,6 +80,7 @@ const RentTable = () => {
                       <BsTrash />
                     </button>
                   </td>
+                  <RentEditForm show={show} setShow={setShow} rentId={id} />
                 </tr>
               )
             )}
