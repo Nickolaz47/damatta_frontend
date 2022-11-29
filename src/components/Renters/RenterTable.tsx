@@ -17,7 +17,7 @@ const RenterTable = () => {
 
   const { treatError } = useTreatError();
   const { data: renters = [], error, isLoading } = useGetRentersQuery("");
-  const [deleteRenter] = useDeleteRenterMutation();
+  const [deleteRenter, { error: deleteError }] = useDeleteRenterMutation();
 
   const handleEdit = (id: string) => {
     setShow(true);
@@ -27,6 +27,7 @@ const RenterTable = () => {
   return (
     <div className="col-sm-8 my-2">
       {error && <Message msg={treatError(error)} type="error" />}
+      {deleteError && <Message msg={treatError(deleteError)} type="error" />}
       {isLoading && <Spinner animation="border" variant="warning" />}
       <table className="table table-light table-striped table-hover">
         <thead>

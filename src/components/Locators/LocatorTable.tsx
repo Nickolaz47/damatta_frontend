@@ -17,16 +17,17 @@ const LocatorTable = () => {
 
   const { treatError } = useTreatError();
   const { data: locators = [], error, isLoading } = useGetLocatorsQuery("");
-  const [deleteLocator] = useDeleteLocatorMutation();
+  const [deleteLocator, { error: deleteError }] = useDeleteLocatorMutation();
 
-  const handleEdit = (id:string) => {
+  const handleEdit = (id: string) => {
     setShow(true);
-    setEditId(id)
+    setEditId(id);
   };
 
   return (
     <div className="col-sm-8 my-2">
       {error && <Message msg={treatError(error)} type="error" />}
+      {deleteError && <Message msg={treatError(deleteError)} type="error" />}
       {isLoading && <Spinner animation="border" variant="warning" />}
       <table className="table table-light table-striped table-hover">
         <thead>
