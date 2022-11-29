@@ -1,6 +1,7 @@
 // Components
 import { Spinner } from "react-bootstrap";
 import Message from "../General/Message";
+import ExpenseEditForm from "./ExpenseEditForm";
 // Hooks
 import { useState } from "react";
 import { useTreatError } from "../../hooks/useTreatError";
@@ -76,6 +77,11 @@ const ExpenseTable = () => {
                     >
                       <BsTrash />
                     </button>
+                    <ExpenseEditForm
+                      show={show}
+                      setShow={setShow}
+                      expenseId={editId}
+                    />
                   </td>
                 </tr>
               )
