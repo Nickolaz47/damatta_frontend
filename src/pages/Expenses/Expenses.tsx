@@ -1,9 +1,14 @@
-import React from 'react'
+// Components
+import ExpenseCreateForm from "../../components/Expenses/ExpenseCreateForm";
 
 const Expenses = () => {
   return (
-    <div>Expenses</div>
-  )
-}
+    <div className="container-fluid">
+      <div className="row m-3">
+        <ExpenseCreateForm />
+      </div>
+    </div>
+  );
+};
 
-export default Expenses
+export default Expenses;
