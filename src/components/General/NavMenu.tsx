@@ -21,6 +21,7 @@ const NavMenu = () => {
     { name: "Inquilinos", link: "/renters", side: "left" },
     { name: "Aluguéis", link: "/rents", side: "left" },
     { name: "Vendas", link: "/sales", side: "left" },
+    { name: "Despesas", link: "/expenses", side: "left" },
     { name: "Login", link: "/login", side: "right" },
   ];
 
