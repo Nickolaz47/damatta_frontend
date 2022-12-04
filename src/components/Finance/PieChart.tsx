@@ -1,7 +1,13 @@
 // Components
 import Message from "../../components/General/Message";
 import { Spinner } from "react-bootstrap";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  defaults,
+} from "chart.js";
 import { Pie } from "react-chartjs-2";
 // Hooks
 import { useTreatError } from "../../hooks/useTreatError";
@@ -9,6 +15,7 @@ import { useTreatError } from "../../hooks/useTreatError";
 import { useGetFinanceQuery } from "../../redux/services/financeService";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
+defaults.font.size = 20;
 
 const PieChart = () => {
   const { treatError } = useTreatError();
@@ -41,10 +48,17 @@ const PieChart = () => {
   };
 
   return (
-    <div className="col-sm-8 m-2">
+    <div className="col-sm-8">
       {error && <Message msg={treatError(error)} type="error" />}
       {isLoading && <Spinner animation="border" variant="warning" />}
-      {!isLoading && finance && finance.length > 0 && <Pie data={data} />}
+      {!isLoading && finance && finance.length > 0 && (
+        <Pie
+          data={data}
+          height="500vh"
+          width="500vw"
+          options={{ maintainAspectRatio: false }}
+        />
+      )}
     </div>
   );
 };
