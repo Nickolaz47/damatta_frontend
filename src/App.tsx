@@ -18,6 +18,7 @@ function App() {
   const Sales = lazy(() => import("./pages/Sales/Sales"));
   const Expenses = lazy(() => import("./pages/Expenses/Expenses"));
   const Finance = lazy(() => import("./pages/Finance/Finance"));
+  const Historic = lazy(() => import("./pages/Historic/Historic"));
 
   return (
     <div>
@@ -55,6 +56,10 @@ function App() {
               <Route
                 path="/finance"
                 element={auth ? <Finance /> : <Login />}
+              ></Route>
+              <Route
+                path="/historic"
+                element={auth ? <Historic /> : <Login />}
               ></Route>
               <Route
                 path="/login"

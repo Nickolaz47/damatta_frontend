@@ -23,6 +23,7 @@ const NavMenu = () => {
     { name: "Vendas", link: "/sales", side: "left" },
     { name: "Despesas", link: "/expenses", side: "left" },
     { name: "Finanças", link: "/finance", side: "left" },
+    { name: "Histórico", link: "/historic", side: "left" },
     { name: "Login", link: "/login", side: "right" },
   ];
 
