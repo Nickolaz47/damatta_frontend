@@ -19,19 +19,19 @@ const expenseService = apiSlice.injectEndpoints({
     createExpense: builder.mutation({
       query: (expense) => requestConfig("/expenses/create", "POST", expense),
       transformErrorResponse: (response) => handleError(response),
-      invalidatesTags: ["Expense"],
+      invalidatesTags: ["Expense", "Finance"],
     }),
     updateExpense: builder.mutation({
       query: ({ expenseId, expense }) =>
         requestConfig(`/expenses/${expenseId}`, "PUT", expense),
       transformErrorResponse: (response) => handleError(response),
-      invalidatesTags: ["Expense"],
+      invalidatesTags: ["Expense", "Finance"],
     }),
     deleteExpense: builder.mutation({
       query: (expenseId) =>
         requestConfig(`/expenses/${expenseId}`, "DELETE", null),
       transformErrorResponse: (response) => handleError(response),
-      invalidatesTags: ["Expense"],
+      invalidatesTags: ["Expense", "Finance"],
     }),
   }),
 });

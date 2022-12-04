@@ -18,18 +18,18 @@ const saleService = apiSlice.injectEndpoints({
     createSale: builder.mutation({
       query: (sale) => requestConfig(`/sales/create`, "POST", sale),
       transformErrorResponse: (response) => handleError(response),
-      invalidatesTags: ["Sale"],
+      invalidatesTags: ["Sale", "Finance"],
     }),
     updateSale: builder.mutation({
       query: ({ saleId, sale }) =>
         requestConfig(`/sales/${saleId}`, "PUT", sale),
       transformErrorResponse: (response) => handleError(response),
-      invalidatesTags: ["Sale"],
+      invalidatesTags: ["Sale", "Finance"],
     }),
     deleteSale: builder.mutation({
       query: (saleId) => requestConfig(`/sales/${saleId}`, "DELETE", null),
       transformErrorResponse: (response) => handleError(response),
-      invalidatesTags: ["Sale"],
+      invalidatesTags: ["Sale", "Finance"],
     }),
   }),
 });
