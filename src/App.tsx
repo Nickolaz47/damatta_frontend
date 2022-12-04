@@ -17,6 +17,7 @@ function App() {
   const Rents = lazy(() => import("./pages/Rents/Rents"));
   const Sales = lazy(() => import("./pages/Sales/Sales"));
   const Expenses = lazy(() => import("./pages/Expenses/Expenses"));
+  const Finance = lazy(() => import("./pages/Finance/Finance"));
 
   return (
     <div>
@@ -50,6 +51,10 @@ function App() {
               <Route
                 path="/expenses"
                 element={auth ? <Expenses /> : <Login />}
+              ></Route>
+              <Route
+                path="/finance"
+                element={auth ? <Finance /> : <Login />}
               ></Route>
               <Route
                 path="/login"
