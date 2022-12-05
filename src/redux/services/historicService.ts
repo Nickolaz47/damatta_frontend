@@ -6,7 +6,12 @@ import handleError from "../helpers/handleError";
 const historicService = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getHistoric: builder.query({
-      query: () => requestConfig("/rentHistoric/get", "GET", null),
+      query: ({ month, year }) =>
+        requestConfig(
+          `/rentHistoric/get?month=${month}&year=${year}`,
+          "GET",
+          null
+        ),
       transformErrorResponse: (response) => handleError(response),
       providesTags: ["Historic"],
     }),
