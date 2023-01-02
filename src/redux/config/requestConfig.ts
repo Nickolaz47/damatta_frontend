@@ -6,7 +6,11 @@ export const baseUrl: string | undefined =
 export const requestConfig = (url: string, method: string, data: any) => {
   let config;
 
-  if (method === "GET" || (method === "DELETE" && data === null)) {
+  if (
+    method === "GET" ||
+    (method === "DELETE" && data === null) ||
+    (method === "POST" && data === null)
+  ) {
     config = {
       url,
       method,

@@ -6,7 +6,10 @@ import { useState } from "react";
 import { useTreatError } from "../../hooks/useTreatError";
 import { useFormatDate } from "../../hooks/useFormatDate";
 // Redux
-import { useGetHistoricQuery } from "../../redux/services/historicService";
+import {
+  useGetHistoricQuery,
+  useCreateHistoricMutation,
+} from "../../redux/services/historicService";
 
 const Historic = () => {
   const [month, setMonth] = useState("");
@@ -37,6 +40,8 @@ const Historic = () => {
     error,
     isLoading,
   } = useGetHistoricQuery({ month, year });
+  const [createHistoric, { error: createError, isLoading: createLoading }] =
+    useCreateHistoricMutation();
 
   const cleanFilters = () => {
     setMonth("");
@@ -45,6 +50,15 @@ const Historic = () => {
 
   return (
     <div className="container m-3">
+      <div className="row justify-content-center">
+        <Button
+          className="col-sm-2 my-2 px-3"
+          variant="warning"
+          onClick={async () => await createHistoric("")}
+        >
+          Salvar histórico
+        </Button>
+      </div>
       <div className="row">
         <div className="col-12 m-3">
           <div className="row justify-content-center align-items-center">
@@ -96,7 +110,7 @@ const Historic = () => {
               <Button
                 className="my-2 px-3"
                 variant="warning"
-                type="button"
+                type="submit"
                 onClick={cleanFilters}
               >
                 Limpar
@@ -104,8 +118,11 @@ const Historic = () => {
             </div>
           </div>
         </div>
-
         <div className="col">
+          {createError && (
+            <Message msg={treatError(createError)} type="error" />
+          )}
+          {createLoading && <Spinner animation="border" variant="warning" />}
           {error && <Message msg={treatError(error)} type="error" />}
           {isLoading && <Spinner animation="border" variant="warning" />}
           <table className="table table-light table-striped table-hover">

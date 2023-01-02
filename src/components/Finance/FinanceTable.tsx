@@ -59,7 +59,7 @@ const FinanceTable = () => {
                   Balanço mensal:{" "}
                   <span
                     className={`fw-bold ${
-                      balance > 0 ? "text-success" : "text-danger"
+                      balance >= 0 ? "text-success" : "text-danger"
                     }`}
                   >
                     {balance.toLocaleString("pt-BR", {
