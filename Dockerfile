@@ -1,14 +1,24 @@
-FROM node:16.18.0
+FROM node:16.18.0 as build
 
 WORKDIR /react-app
 
-COPY package*.json /react-app
+COPY ./damatta_frontend/package*.json /react-app/
 
 RUN npm install
 
-COPY . .
+COPY ./damatta_frontend /react-app/
 
 ENV REACT_APP_ENV=${REACT_APP_ENV}
 ENV REACT_APP_PROD_API_URL=${REACT_APP_PROD_API_URL}
 
 RUN npm run build
+
+FROM nginx
+
+COPY --from=build /react-app/build /usr/share/nginx/html
+
+COPY ./damatta_frontend/nginx.conf /etc/nginx/nginx.conf
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
