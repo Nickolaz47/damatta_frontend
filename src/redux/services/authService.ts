@@ -6,11 +6,12 @@ import handleError from "../helpers/handleError";
 const authService = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation({
-      query: (credentials) => requestConfig(`/login`, "POST", credentials),
+      query: (credentials) =>
+        requestConfig(`/users/login`, "POST", credentials),
       transformErrorResponse: (response) => handleError(response),
     }),
     logout: builder.mutation({
-      query: () => requestConfig(`/logout`, "GET", null),
+      query: () => requestConfig(`/users/logout`, "GET", null),
       transformErrorResponse: (response) => handleError(response),
     }),
   }),
