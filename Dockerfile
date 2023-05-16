@@ -19,6 +19,8 @@ COPY --from=build /react-app/build /usr/share/nginx/html
 
 COPY ./damatta_frontend/nginx.conf /etc/nginx/nginx.conf
 
-EXPOSE 80
+COPY ../ssl/*.pem /etc/nginx/ssl/
+
+EXPOSE 443
 
 CMD ["nginx", "-g", "daemon off;"]
