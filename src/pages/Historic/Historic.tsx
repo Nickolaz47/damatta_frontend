@@ -128,7 +128,7 @@ const Historic = () => {
           <table className="table table-light table-striped table-hover">
             <thead>
               <tr>
-                <th scope="col">Locator</th>
+                <th scope="col">Locador</th>
                 <th scope="col">Inquilino</th>
                 <th scope="col">Valor</th>
                 <th scope="col">Data de Vencimento</th>

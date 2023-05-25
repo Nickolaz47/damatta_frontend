@@ -10,7 +10,12 @@ const financeService = apiSlice.injectEndpoints({
       transformErrorResponse: (response) => handleError(response),
       providesTags: ["Finance", "Rent", "Sale", "Expense"],
     }),
+    getFinanceTotal: builder.query({
+      query: () => requestConfig("/finance/balanceTotal", "GET", null),
+      transformErrorResponse: (response) => handleError(response),
+      providesTags: ["Finance", "Sale", "Expense", "Historic"],
+    }),
   }),
 });
 
-export const { useGetFinanceQuery } = financeService;
+export const { useGetFinanceQuery, useGetFinanceTotalQuery } = financeService;
